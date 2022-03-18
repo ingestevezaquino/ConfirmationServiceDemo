@@ -5,11 +5,16 @@ VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSCore.API", "CSCore.API\CSCore.API.csproj", "{1C7D1846-A398-432D-A1DB-0B07EF3869ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSCore.Services", "CSCore.Services\CSCore.Services.csproj", "{22757CA7-3B73-41DC-88CF-F32372FB2877}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSCore.Services", "CSCore.Services\CSCore.Services.csproj", "{22757CA7-3B73-41DC-88CF-F32372FB2877}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSCore.Persistence", "CSCore.Persistence\CSCore.Persistence.csproj", "{064C791D-2CCF-4D58-BFEB-280E710D8BC8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSCore.Persistence", "CSCore.Persistence\CSCore.Persistence.csproj", "{064C791D-2CCF-4D58-BFEB-280E710D8BC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CSCore.Tests", "CSCore.Tests\CSCore.Tests.csproj", "{C81B9CA4-B9C5-43AE-97C3-10EAC20C82FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CSCore.Tests", "CSCore.Tests\CSCore.Tests.csproj", "{C81B9CA4-B9C5-43AE-97C3-10EAC20C82FC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A3B45CC6-6D8F-4F63-B9B8-B5AA3CF9BE8F}"
+	ProjectSection(SolutionItems) = preProject
+		Dockerfile = Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

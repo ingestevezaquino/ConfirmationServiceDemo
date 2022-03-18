@@ -1,6 +1,7 @@
 ﻿using CSCore.Persistence;
 using CSCore.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace CSCore.Services.Job
@@ -9,18 +10,21 @@ namespace CSCore.Services.Job
     {
         private readonly DemoTicketsDBContext _context;
         private readonly HttpClient _httpClient;
+        private readonly ILogger<JobService> _logger;
         private readonly Random _random;
 
-        public JobService(DemoTicketsDBContext context, IHttpClientFactory httpClientFactory)
+        public JobService(DemoTicketsDBContext context, IHttpClientFactory httpClientFactory, ILogger<JobService> logger)
         {
             _context = context;
             _httpClient = httpClientFactory.CreateClient("RandomNamesRestClient");
             _httpClient.BaseAddress = new Uri("http://names.drycodes.com/");
+            _logger = logger;
             _random = new Random();
         }
 
         public async Task<int> LoadTickets()
         {
+            _logger.LogInformation("START PROCESS - LOAD TICKETS");
             int amountOfNewTickets = _random.Next(20);
 
             List<Ticket> tickets = new();
@@ -35,6 +39,7 @@ namespace CSCore.Services.Job
             await Task.Delay(10000);
 
             await _context.Tickets.AddRangeAsync(tickets);
+            _logger.LogInformation($"A TOTAL OF {amountOfNewTickets} NEW TICKETS WERE LOADED");
             return await _context.SaveChangesAsync();
         }
 
