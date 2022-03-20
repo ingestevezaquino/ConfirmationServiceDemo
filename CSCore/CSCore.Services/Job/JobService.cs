@@ -36,7 +36,7 @@ namespace CSCore.Services.Job
             }
 
             // Simulate we are fetching ticket's information from another system, a CRM for instance.
-            await Task.Delay(10000);
+            await Task.Delay(5000);
 
             await _context.Tickets.AddRangeAsync(tickets);
             _logger.LogInformation($"A TOTAL OF {amountOfNewTickets} NEW TICKETS WERE LOADED");

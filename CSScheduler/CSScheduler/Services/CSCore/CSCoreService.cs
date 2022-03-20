@@ -9,6 +9,7 @@
             _client = httpClientFactory.CreateClient("CSCoreRestClient");
             _client.BaseAddress = new Uri("http://cscore-micro/");
         }
+        
         public async Task LoadTickets()
         {
             await _client.GetStringAsync("api/job");

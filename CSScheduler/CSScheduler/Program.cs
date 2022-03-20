@@ -16,6 +16,7 @@ builder.Services.AddHangfire(config =>
     .UseRecommendedSerializerSettings()
     .UsePostgreSqlStorage(Environment.GetEnvironmentVariable("CONNECTION_DB"), new PostgreSqlStorageOptions());
 });
+builder.Services.AddHangfireServer();
 
 var app = builder.Build();
 
@@ -39,6 +40,7 @@ app.UseAuthorization();
 ICSCoreService cscoreService = app.Services.GetRequiredService<ICSCoreService>();
 IRecurringJobManager recurringJobManager = app.Services.GetRequiredService<IRecurringJobManager>();
 
+recurringJobManager.RemoveIfExists("load_tickets");
 recurringJobManager.AddOrUpdate<CSCoreService>("load_tickets", e => e.LoadTickets(), "*/2 * * * *");
 
 app.MapRazorPages();

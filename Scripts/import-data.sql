@@ -1,3 +1,5 @@
+CREATE DATABASE scheduler_db;
+
 CREATE TABLE processes(
 	id SERIAL,
 	name VARCHAR(25) NOT NULL,
@@ -61,5 +63,5 @@ INSERT INTO processes (name,description,isActive) VALUES
 ('CONF-IPTV','Check configurations and params for tickets that have IPTV as a product in the confirmation stage','1');
 
 INSERT INTO tickets (processName,productType,caseNumber,subscriberNumber,currentQueue,uac,clientName,clientContactPhone,status) VALUES 
-('DIAG-ADSL','ADSL','356241','3545558888','ADSL FAULT DIAGNOSIS','243','Bailey Davidson','4607295853','PENDING'),
-('CONF-IPTV','IPTV','142653','3546661515','IPTV FAULT CONFIRMATION','789','Remi Holmes','16967598718','PENDING');
+('DIAG-ADSL','ADSL','356241','3545558888','ADSL FAULT DIAGNOSIS','243','Bailey_Davidson','4607295853','PENDING'),
+('CONF-IPTV','IPTV','142653','3546661515','IPTV FAULT CONFIRMATION','789','Remi_Holmes','16967598718','PENDING');
