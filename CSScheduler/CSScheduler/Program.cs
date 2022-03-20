@@ -1,3 +1,4 @@
+using CSScheduler;
 using CSScheduler.Services.CSCore;
 using Hangfire;
 using Hangfire.PostgreSql;
@@ -31,7 +32,12 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseHangfireDashboard();
+// Disable Hangfire Dashboard Authentication -
+// IMPORTANT NOTE: we do this just because we're dealing with a demo app.
+app.UseHangfireDashboard("/hangfire", new DashboardOptions()
+{
+    Authorization = new[] { new DashboardNoAuthorizationFilter() }
+});
 
 app.UseRouting();
 
