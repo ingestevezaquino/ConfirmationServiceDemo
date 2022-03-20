@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+        cscore-db:
+                build: ./Scripts/
+        cscore-micro:
+                build: ./CSCore/
+                environment:
+                        CONNECTION_DB: Host=cscore-db;Database=postgres;Username=postgres
+                ports:
+                        - 8000:80
+                depends_on:
+                        - cscore-db

@@ -1,1 +1,0 @@
-/opt/mssql/bin/sqlservr & /usr/src/app/import_data.sh & /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P $SA_PASSWORD
