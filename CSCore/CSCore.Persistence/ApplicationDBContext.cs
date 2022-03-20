@@ -31,6 +31,33 @@ namespace CSCore.Persistence
                 entity.Property(e => e.Id)
                     .HasColumnName("id");
 
+                entity.Property(e => e.TicketId)
+                    .HasColumnName("ticketid");
+
+                entity.Property(e => e.IsConfigured)
+                    .HasColumnName("isconfigured");
+
+                entity.Property(e => e.OLTAdminState)
+                    .HasColumnName("oltadminstate");
+
+                entity.Property(e => e.OLTOperState)
+                    .HasColumnName("oltoperstate");
+
+                entity.Property(e => e.ONTAdminState)
+                    .HasColumnName("ontadminstate");
+
+                entity.Property(e => e.ONTOperState)
+                    .HasColumnName("ontoperstate");
+
+                entity.Property(e => e.ONTRxPower)
+                    .HasColumnName("ontrxpower");
+
+                entity.Property(e => e.ONTTxPower)
+                    .HasColumnName("onttxpower");
+
+                entity.Property(e => e.ONTVoltage)
+                    .HasColumnName("ontvoltage");
+
                 entity.Property(e => e.CreationTime)
                     .HasColumnName("creationtime")
                     .HasColumnType("timestamp without time zone")
@@ -54,6 +81,9 @@ namespace CSCore.Persistence
 
                 entity.Property(e => e.Id)
                     .HasColumnName("id");
+
+                entity.Property(e => e.TicketId)
+                    .HasColumnName("ticketid");
 
                 entity.Property(e => e.CreationTime)
                     .HasColumnName("creationtime")
@@ -117,14 +147,14 @@ namespace CSCore.Persistence
             {
                 entity.ToTable("tickets");
 
-                entity.Property(e => e.Id)
-                    .HasColumnName("id");
-
                 entity.HasIndex(e => e.CaseNumber, "uq_tickets_casenumber")
                     .IsUnique();
 
                 entity.HasIndex(e => e.UAC, "uq_tickets_uac")
                     .IsUnique();
+
+                entity.Property(e => e.Id)
+                    .HasColumnName("id");
 
                 entity.Property(e => e.CaseNumber)
                     .HasColumnName("casenumber")    
