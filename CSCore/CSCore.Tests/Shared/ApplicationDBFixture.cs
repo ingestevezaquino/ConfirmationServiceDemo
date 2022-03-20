@@ -10,32 +10,32 @@ using System.Threading.Tasks;
 
 namespace CSCore.Tests.Shared
 {
-    public abstract class DemoTicketsDBFixture
+    public abstract class ApplicationDBFixture
     {
         private const string InMemoryConnectionString = "DataSource=:memory:";
         private readonly SqliteConnection _connection;
 
-        protected readonly DemoTicketsDBContext DbContext;
+        protected readonly ApplicationDBContext DbContext;
 
-        public DemoTicketsDBFixture()
+        public ApplicationDBFixture()
         {
             _connection = new SqliteConnection(InMemoryConnectionString);
             _connection.Open();
-            var options = new DbContextOptionsBuilder<DemoTicketsDBContext>()
+            var options = new DbContextOptionsBuilder<ApplicationDBContext>()
                     .UseSqlite(_connection)
                     .Options;
-            DbContext = new DemoTicketsDBContext(options);
+            DbContext = new ApplicationDBContext(options);
             DbContext.Database.EnsureCreated();
         }
 
-        public DemoTicketsDBContext GetInMemoryTicketsDBContext()
+        public ApplicationDBContext GetInMemoryTicketsDBContext()
         {
-            var _contextOptions = new DbContextOptionsBuilder<DemoTicketsDBContext>()
+            var _contextOptions = new DbContextOptionsBuilder<ApplicationDBContext>()
               .UseInMemoryDatabase("DemoTicketsDBContextTest")
               .ConfigureWarnings(b => b.Ignore(InMemoryEventId.TransactionIgnoredWarning))
               .Options;
 
-            return new DemoTicketsDBContext(_contextOptions);
+            return new ApplicationDBContext(_contextOptions);
         }
 
         public void Dispose()

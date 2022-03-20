@@ -8,12 +8,12 @@ namespace CSCore.Services.Job
 {
     public class JobService : IJobService
     {
-        private readonly DemoTicketsDBContext _context;
+        private readonly ApplicationDBContext _context;
         private readonly HttpClient _httpClient;
         private readonly ILogger<JobService> _logger;
         private readonly Random _random;
 
-        public JobService(DemoTicketsDBContext context, IHttpClientFactory httpClientFactory, ILogger<JobService> logger)
+        public JobService(ApplicationDBContext context, IHttpClientFactory httpClientFactory, ILogger<JobService> logger)
         {
             _context = context;
             _httpClient = httpClientFactory.CreateClient("RandomNamesRestClient");

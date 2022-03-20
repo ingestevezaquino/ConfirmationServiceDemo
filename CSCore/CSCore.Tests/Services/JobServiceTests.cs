@@ -2,6 +2,7 @@ using CSCore.Persistence.Models;
 using CSCore.Services.Job;
 using CSCore.Tests.Shared;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Moq;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ using Xunit;
 
 namespace CSCore.Tests.Services
 {
-    public class JobServiceTests : DemoTicketsDBFixture
+    public class JobServiceTests : ApplicationDBFixture
     {
         public JobServiceTests()
         {
@@ -30,7 +31,9 @@ namespace CSCore.Tests.Services
                 .Setup(x => x.CreateClient(It.IsAny<string>()))
                 .Returns(httpClientMock.Object);
 
-            IJobService jobService = new JobService(DbContext, httpClientFactoryMock.Object);
+            Mock<ILogger<JobService>> loggerMock = new Mock<ILogger<JobService>>();
+
+            IJobService jobService = new JobService(DbContext, httpClientFactoryMock.Object, loggerMock.Object);
 
             // Act
             //

@@ -5,6 +5,12 @@ namespace CSCore.Persistence.Models
 {
     public partial class Ticket
     {
+        public Ticket()
+        {
+            Diagnostics = new HashSet<Diagnostic>();
+            Facilities = new HashSet<Facility>();
+        }
+
         public int Id { get; set; }
         public string ProcessName { get; set; } = null!;
         public string ProductType { get; set; } = null!;
@@ -16,8 +22,10 @@ namespace CSCore.Persistence.Models
         public string ClientName { get; set; } = null!;
         public string ClientContactPhone { get; set; } = null!;
         public string Status { get; set; } = null!;
-        public DateTime? CreationTime { get; set; }
-        public string? HostName { get; set; }
-        public string? UserName { get; set; }
+        public DateTime CreationTime { get; set; }
+        public string Username { get; set; } = null!;
+
+        public virtual ICollection<Diagnostic> Diagnostics { get; set; }
+        public virtual ICollection<Facility> Facilities { get; set; }
     }
 }

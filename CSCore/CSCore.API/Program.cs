@@ -8,8 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-var connectionString = Environment.GetEnvironmentVariable("CONNECTION_DemoTicketsDB");
-builder.Services.AddDbContext<DemoTicketsDBContext>(options => options.UseSqlServer(connectionString));
+var connectionString = Environment.GetEnvironmentVariable("CONNECTION_DB");
+builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseNpgsql(connectionString));
 builder.Services.AddHttpClient();
 builder.Services.AddServices();
 
