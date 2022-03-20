@@ -7,7 +7,7 @@
         public CSCoreService(IHttpClientFactory httpClientFactory)
         {
             _client = httpClientFactory.CreateClient("CSCoreRestClient");
-            _client.BaseAddress = new Uri("http://cscore-micro/");
+            _client.BaseAddress = new Uri("http://cs-core-micro/");
         }
         
         public async Task LoadTickets()
