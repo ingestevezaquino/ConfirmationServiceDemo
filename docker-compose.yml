@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+        cs-db:
+                build: ./Scripts/
+        cscore-micro:
+                build: ./CSCore/
+                environment:
+                        CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
+                ports:
+                        - 8080:80
+                depends_on:
+                        - cs-db
+        csscheduler-micro:
+                build: ./CSScheduler/
+                environment:
+                        CONNECTION_DB: Host=cs-db;Database=scheduler_db;Username=postgres
+                ports:
+                        - 8000:80
+                depends_on:
+                        - cs-db
