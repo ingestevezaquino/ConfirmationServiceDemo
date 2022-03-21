@@ -1,5 +1,6 @@
 using CSScheduler;
 using CSScheduler.Services.CSCore;
+using CSScheduler.Services.DiagADSL;
 using Hangfire;
 using Hangfire.PostgreSql;
 
@@ -48,6 +49,9 @@ IRecurringJobManager recurringJobManager = app.Services.GetRequiredService<IRecu
 
 recurringJobManager.RemoveIfExists("load_tickets");
 recurringJobManager.AddOrUpdate<CSCoreService>("load_tickets", e => e.LoadTickets(), "*/2 * * * *");
+
+recurringJobManager.RemoveIfExists("exec_diag_adsl_process");
+recurringJobManager.AddOrUpdate<DiagADSLService>("exec_diag_adsl_process", e => e.ExecProcessDiagADSL(), "*/4 * * * *");
 
 app.MapRazorPages();
 
