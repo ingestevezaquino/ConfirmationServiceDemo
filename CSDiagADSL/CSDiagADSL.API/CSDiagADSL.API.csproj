@@ -7,13 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Hangfire.AspNetCore" Version="1.7.28" />
-    <PackageReference Include="Hangfire.Core" Version="1.7.28" />
-    <PackageReference Include="Hangfire.PostgreSql" Version="1.9.7" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Services\ConfIPTV\" />
+    <ProjectReference Include="..\CSDiagADSL.Services\CSDiagADSL.Services.csproj" />
   </ItemGroup>
 
 </Project>
