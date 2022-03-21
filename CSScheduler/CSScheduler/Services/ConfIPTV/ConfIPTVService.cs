@@ -6,8 +6,8 @@
 
         public ConfIPTVService(IHttpClientFactory httpClientFactory)
         {
-            _client = httpClientFactory.CreateClient("DiagADSLRestClient");
-            _client.BaseAddress = new Uri("http://diag-adsl-micro/");
+            _client = httpClientFactory.CreateClient("ConfIPTVRestClient");
+            _client.BaseAddress = new Uri("http://conf-iptv-micro/");
         }
 
         public async Task ExecProcessConfIPTV() 
