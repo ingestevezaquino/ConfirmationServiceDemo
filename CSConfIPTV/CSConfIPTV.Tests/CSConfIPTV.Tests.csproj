@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -27,8 +27,6 @@
   <ItemGroup>
     <ProjectReference Include="..\CSConfIPTV.Persistence\CSConfIPTV.Persistence.csproj" />
     <ProjectReference Include="..\CSConfIPTV.Services\CSConfIPTV.Services.csproj" />
-    <ProjectReference Include="..\CSDiagADSL.Persistence\CSConfIPTV.Persistence.csproj" />
-    <ProjectReference Include="..\CSDiagADSL.Services\CSConfIPTV.Services.csproj" />
   </ItemGroup>
 
 </Project>

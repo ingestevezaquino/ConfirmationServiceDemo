@@ -1,5 +1,5 @@
-using CSDiagADSL.Installers;
-using CSDiagADSL.Persistence;
+using CSConfIPTV.Installers;
+using CSConfIPTV.Persistence;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

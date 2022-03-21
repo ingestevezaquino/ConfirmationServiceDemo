@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSEAD.API.ClientResponse
+namespace CSDiagADSL.Services.ClientResponse
 {
     public class Facility
     {

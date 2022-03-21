@@ -48,10 +48,10 @@ ICSCoreService cscoreService = app.Services.GetRequiredService<ICSCoreService>()
 IRecurringJobManager recurringJobManager = app.Services.GetRequiredService<IRecurringJobManager>();
 
 recurringJobManager.RemoveIfExists("load_tickets");
-recurringJobManager.AddOrUpdate<CSCoreService>("load_tickets", e => e.LoadTickets(), "*/2 * * * *");
+recurringJobManager.AddOrUpdate<CSCoreService>("load_tickets", e => e.LoadTickets(), "*/1 * * * *");
 
 recurringJobManager.RemoveIfExists("exec_diag_adsl_process");
-recurringJobManager.AddOrUpdate<DiagADSLService>("exec_diag_adsl_process", e => e.ExecProcessDiagADSL(), "*/4 * * * *");
+recurringJobManager.AddOrUpdate<DiagADSLService>("exec_diag_adsl_process", e => e.ExecProcessDiagADSL(), "*/3 * * * *");
 
 app.MapRazorPages();
 
