@@ -33,7 +33,23 @@ namespace CSEAD.Services.Diagnostics
             Random rand = new();
             Diagnostic diagnostic = null;
 
-            if (rand.Next(0, 9) == 9)
+            if (rand.Next(0, 9) == 3)
+            {
+                diagnostic = new()
+                {
+                    FacilityId = facility.Id,
+                    IsConfigured = true,
+                    OLTAdminState = true,
+                    OLTOperState = true,
+                    ONTAdminState = true,
+                    ONTOperState = true,
+                    ONTRxPower = Convert.ToBoolean(rand.Next(0, 2)),
+                    ONTTxPower = Convert.ToBoolean(rand.Next(0, 2)),
+                    ONTVoltage = Convert.ToBoolean(rand.Next(0, 2)),
+                    Facility = facility,
+                };
+            }
+            else if (rand.Next(0, 9) == 9)
             {
                 diagnostic = new()
                 {
@@ -48,7 +64,7 @@ namespace CSEAD.Services.Diagnostics
                     ONTVoltage = true,
                     Facility = facility,
                 };
-            } 
+            }
             else
             {
                 diagnostic = new()
