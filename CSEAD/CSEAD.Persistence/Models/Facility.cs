@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CSCore.Persistence.Models
+namespace CSEAD.Persistence.Models
 {
     public partial class Facility
     {

@@ -26,24 +26,25 @@ CREATE TABLE tickets(
 	userName VARCHAR(256) NOT NULL DEFAULT current_user,
 	CONSTRAINT pk_tickets_id PRIMARY KEY (id),
 	CONSTRAINT uq_tickets_caseNumber UNIQUE (caseNumber),
+	CONSTRAINT uq_tickets_subscriberNumber UNIQUE (subscriberNumber),
 	CONSTRAINT uq_tickets_uac UNIQUE (uac)
 );
 
 CREATE TABLE facilities(
 	id SERIAL,
-	ticketId INT NOT NULL,
+	subscriberNumber VARCHAR(25) NOT NULL,
 	nodeAddress VARCHAR(50) NOT NULL,
 	ipAddress VARCHAR(20) NOT NULL,
 	nodeName VARCHAR(50) NOT NULL,
 	creationTime TIMESTAMP NOT NULL DEFAULT NOW(),
 	userName VARCHAR(256) NOT NULL DEFAULT current_user,
 	CONSTRAINT pk_facilities_id PRIMARY KEY (id),
-	CONSTRAINT fk_facilities_ticketId FOREIGN KEY (ticketId) REFERENCES tickets(id)
+	CONSTRAINT fk_facilities_subscriberNumber FOREIGN KEY (subscriberNumber) REFERENCES tickets(subscriberNumber)
 );
 
 CREATE TABLE diagnostics(
 	id SERIAL,
-	ticketId INT NOT NULL,
+	facilityId INT NOT NULL,
 	isConfigured BOOLEAN NOT NULL,
 	oltAdminState BOOLEAN NOT NULL,
 	oltOperState BOOLEAN NOT NULL,
@@ -55,7 +56,7 @@ CREATE TABLE diagnostics(
 	creationTime TIMESTAMP NOT NULL DEFAULT NOW(),
 	userName VARCHAR(256) NOT NULL DEFAULT current_user,
 	CONSTRAINT pk_diagnostics_id PRIMARY KEY (id),
-	CONSTRAINT fk_diagnostics_ticketId FOREIGN KEY (ticketId) REFERENCES tickets(id)
+	CONSTRAINT fk_diagnostics_facilityId FOREIGN KEY (facilityId) REFERENCES facilities(id)
 );
 
 INSERT INTO processes (name,description,isActive) VALUES 
