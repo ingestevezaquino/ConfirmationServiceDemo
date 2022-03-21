@@ -1,4 +1,5 @@
 using CSScheduler;
+using CSScheduler.Services.ConfIPTV;
 using CSScheduler.Services.CSCore;
 using CSScheduler.Services.DiagADSL;
 using Hangfire;
@@ -52,6 +53,9 @@ recurringJobManager.AddOrUpdate<CSCoreService>("load_tickets", e => e.LoadTicket
 
 recurringJobManager.RemoveIfExists("exec_diag_adsl_process");
 recurringJobManager.AddOrUpdate<DiagADSLService>("exec_diag_adsl_process", e => e.ExecProcessDiagADSL(), "*/3 * * * *");
+
+recurringJobManager.RemoveIfExists("exec_conf_iptv_process");
+recurringJobManager.AddOrUpdate<ConfIPTVService>("exec_conf_iptv_process", e => e.ExecProcessConfIPTV(), "*/3 * * * *");
 
 app.MapRazorPages();
 
