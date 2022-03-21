@@ -1,52 +1,46 @@
-using CSCore.Persistence.Models;
-using CSCore.Services.Job;
-using CSCore.Tests.Shared;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
+﻿using CSEAD.Persistence;
+using CSEAD.Persistence.Interfaces;
+using CSEAD.Persistence.Models;
+using CSEAD.Services.Diagnostics;
+using CSEAD.Services.Facilities;
+using CSEAD.Tests.Shared;
 using Moq;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace CSCore.Tests.Services
+namespace CSEAD.Servuces.Tests
 {
-    public class JobServiceTests : ApplicationDBFixture
+    public class DiagnosticServiceTests : ApplicationDBFixture
     {
-        public JobServiceTests()
+        public DiagnosticServiceTests()
         {
             CreateDBMockData();
         }
 
         [Fact]
-        public async Task LoadTickets_InsertsNewTicketsIntoTicketsTable_TicketsTableHasMoreThanTwoTickets()
+        public async Task CarryOutDiagnostics_SearchFacilityAndCarryOutDiagnostics_ReturnsNotNullDiagnostics()
         {
             // Arrange
             // 
-            Mock<HttpClient> httpClientMock = new Mock<HttpClient>();
-
-            Mock<IHttpClientFactory> httpClientFactoryMock = new Mock<IHttpClientFactory>();
-            httpClientFactoryMock
-                .Setup(x => x.CreateClient(It.IsAny<string>()))
-                .Returns(httpClientMock.Object);
-
-            Mock<ILogger<JobService>> loggerMock = new Mock<ILogger<JobService>>();
-
-            IJobService jobService = new JobService(DbContext, httpClientFactoryMock.Object, loggerMock.Object);
+            IUnitOfWork unitOfWork = new UnitOfWork(DbContext);
+            IFacilityService facilityService = new FacilityService(unitOfWork);
+            IDiagnosticService diagnosticService = new DiagnosticService(unitOfWork, facilityService);
 
             // Act
             //
-            int totalNewTickets = await jobService.LoadTickets();
-            int totalAmountOfTickets = (await DbContext.Tickets.ToListAsync()).Count;
+            var diagnostic = await diagnosticService.CarryOutDiagnostics("3545558888");
 
             // Asert
             //
-            Assert.True(totalAmountOfTickets > 2);        
+            Assert.NotNull(diagnostic);
         }
 
         #region Private Methods
-        
+
         private void CreateDBMockData()
         {
             DbContext.Database.EnsureDeleted();

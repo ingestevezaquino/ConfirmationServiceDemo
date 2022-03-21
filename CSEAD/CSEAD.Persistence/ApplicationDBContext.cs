@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using CSCore.Persistence.Models;
+using CSEAD.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace CSCore.Persistence
+namespace CSEAD.Persistence
 {
     public partial class ApplicationDBContext : DbContext
     {

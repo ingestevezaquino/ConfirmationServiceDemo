@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace CSCore.Persistence.Models
+namespace CSEAD.API.DTOs
 {
-    public partial class Diagnostic
+    public class DiagnosticDto
     {
-        public int Id { get; set; }
-        public int FacilityId { get; set; }
         public bool IsConfigured { get; set; }
         public bool OLTAdminState { get; set; }
         public bool OLTOperState { get; set; }
@@ -15,9 +16,7 @@ namespace CSCore.Persistence.Models
         public bool ONTRxPower { get; set; }
         public bool ONTTxPower { get; set; }
         public bool ONTVoltage { get; set; }
-        public DateTime CreationTime { get; set; }
-        public string Username { get; set; } = null!;
 
-        public virtual Facility Facility { get; set; } = null!;
+        public virtual FacilityDto Facility { get; set; } = null!;
     }
 }
