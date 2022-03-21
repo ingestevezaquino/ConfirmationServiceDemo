@@ -18,6 +18,11 @@ services:
                 restart: always
                 environment:
                         CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
+        conf-iptv-micro:
+                build: ./CSConfIPTV/
+                restart: always
+                environment:
+                        CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
         cs-scheduler-micro:
                 build: ./CSScheduler/
                 restart: always
