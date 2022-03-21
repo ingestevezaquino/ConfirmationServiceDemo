@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSDiagADSL.Services.ClientResponse
+namespace CSConfIPTV.Services.ClientResponse
 {
     public class Diagnostic
     {
