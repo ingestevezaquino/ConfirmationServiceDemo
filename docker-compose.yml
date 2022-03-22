@@ -1,39 +1,39 @@
-version: "3"
+version: '3'
 
 services:
-        cs-db:
-                build: ./scripts/
-        cs-core-micro:
-                build: ./core_micro/
-                restart: always
-                environment:
-                        CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
-                ports:
-                        - 9000:80
-        equipments-diagnostics-micro:
-                build: ./ead_micro/
-                restart: always
-                environment:
-                        CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
-        diag-adsl-micro:
-                build: ./diag_adsl_micro/
-                restart: always
-                environment:
-                        CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
-        conf-iptv-micro:
-                build: ./conf_iptv_micro/
-                restart: always
-                environment:
-                        CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
-        cs-scheduler-micro:
-                build: ./scheduler_micro/
-                restart: always
-                environment:
-                        CONNECTION_DB: Host=cs-db;Database=scheduler_db;Username=postgres
-                ports:
-                        - 8000:80
-        frontend:
-                build: ./frontend/
-                restart: always
-                ports:
-                        - 8080:80
+  db:
+    build: ./scripts/
+  core-micro:
+    build: ./core_micro/
+    restart: always
+    environment:
+      CONNECTION_DB: Host=db;Database=postgres;Username=postgres
+    ports:
+      - 9000:80
+  equipments-diagnostics-micro:
+    build: ./ead_micro/
+    restart: always
+    environment:
+      CONNECTION_DB: Host=db;Database=postgres;Username=postgres
+  diag-adsl-micro:
+    build: ./diag_adsl_micro/
+    restart: always
+    environment:
+      CONNECTION_DB: Host=db;Database=postgres;Username=postgres
+  conf-iptv-micro:
+    build: ./conf_iptv_micro/
+    restart: always
+    environment:
+      CONNECTION_DB: Host=db;Database=postgres;Username=postgres
+  scheduler-micro:
+    build: ./scheduler_micro/
+    restart: always
+    environment:
+      CONNECTION_DB: Host=db;Database=scheduler_db;Username=postgres
+    ports:
+      - 8000:80
+  frontend:
+    build: ./frontend/
+    restart: always
+    ports:
+      - 8080:80

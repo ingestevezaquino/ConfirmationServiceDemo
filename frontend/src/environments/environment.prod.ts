@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: "http://cs-core-micro/api/"
+  apiUrl: "http://core-micro/api/"
 };
