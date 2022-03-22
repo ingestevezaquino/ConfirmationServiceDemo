@@ -8,8 +8,6 @@ services:
     restart: always
     environment:
       CONNECTION_DB: Host=db;Database=postgres;Username=postgres
-    ports:
-      - 9000:80
   equipments-diagnostics-micro:
     build: ./ead_micro/
     restart: always
