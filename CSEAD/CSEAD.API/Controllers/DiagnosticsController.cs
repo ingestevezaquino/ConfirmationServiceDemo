@@ -25,5 +25,12 @@ namespace CSEAD.API.Controllers
             var result = _mapper.Map<DiagnosticDto>(await _diagnosticService.CarryOutDiagnostics(subscriberNumber));
             return Ok(result);
         }
+
+        [HttpGet("Last/{subscriberNumber}")]
+        public async Task<IActionResult> GetFacilityLastDiagnosticBySubcriberNumber(string subscriberNumber)
+        {
+            var result = _mapper.Map<DiagnosticDto>(await _diagnosticService.CarryOutDiagnostics(subscriberNumber));
+            return Ok(result);
+        }
     }
 }

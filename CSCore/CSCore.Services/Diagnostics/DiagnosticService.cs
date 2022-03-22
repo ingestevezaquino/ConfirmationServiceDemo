@@ -22,7 +22,7 @@ namespace CSCore.Services.Diagnostics
 
         public async Task<ClientResponse.Diagnostic> GetLastDiagnosisAndFacility(string subcriberNumber)
         {
-            string responseJSON = await _httpClient.GetStringAsync($"api/diagnostics/{subcriberNumber}");
+            string responseJSON = await _httpClient.GetStringAsync($"api/diagnostics/last/{subcriberNumber}");
             var diagnosis = JsonConvert.DeserializeObject<ClientResponse.Diagnostic>(responseJSON);
             return diagnosis;
         }

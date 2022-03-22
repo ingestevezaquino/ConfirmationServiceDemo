@@ -21,6 +21,14 @@ namespace CSEAD.Services.Diagnostics
             _facilityService = facilityService;
         }
 
+        public async Task<Diagnostic> GetFacilityLastDiagnosticBySubscriberNumber(string subscriberNumber)
+        {
+            Facility facility = await _unitOfWork.Facilities.FindSingleAsync(f => f.SubscriberNumber == subscriberNumber);
+            Diagnostic diagnostic = facility.Diagnostics.OrderByDescending(d => d.CreationTime).FirstOrDefault();
+            diagnostic.Facility = facility;
+            return diagnostic;
+        }
+
         public async Task<Diagnostic> CarryOutDiagnostics(string subscriberNumber)
         {
             Facility facility = await _unitOfWork.Facilities.FindSingleAsync(f => f.SubscriberNumber == subscriberNumber);
