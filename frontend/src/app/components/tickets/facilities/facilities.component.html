@@ -1,0 +1,56 @@
+<div class="grid" style="margin-top: 1rem;">
+    <div class="col-6">
+        <p-card header="Facility">
+            <div>
+                <span class="bold-font">Subscriber Number:</span> <br><span>{{diagnostic.facility.subscriberNumber}}</span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">Node Address:</span> <br><span>{{diagnostic.facility.nodeAddress}}</span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">IP Address:</span> <br><span>{{diagnostic.facility.ipAddress}}</span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">Node Name:</span> <br><span>{{diagnostic.facility.nodeName}}</span>
+            </div>
+        </p-card>
+    </div>
+    <div class="col-6">
+        <p-card header="Diagnostic">
+            <div>
+                <span class="bold-font">IsConfigured:</span> &nbsp;<span><i class="pi pi-circle-fill" [ngClass]="{ 'true': diagnostic.isConfigured, 'false': !diagnostic.isConfigured}"></i></span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">OLTAdminState:</span> &nbsp;<span><i class="pi pi-circle-fill" [ngClass]="{ 'true': diagnostic.oltAdminState, 'false': !diagnostic.oltAdminState}"></i></span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">OLTOperState:</span> &nbsp;<span><i class="pi pi-circle-fill" [ngClass]="{ 'true': diagnostic.oltOperState, 'false': !diagnostic.oltOperState}"></i></span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">ONTAdminState:</span> &nbsp;<span><i class="pi pi-circle-fill" [ngClass]="{ 'true': diagnostic.ontAdminState, 'false': !diagnostic.ontAdminState}"></i></span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">ONTOperState:</span> &nbsp;<span><i class="pi pi-circle-fill" [ngClass]="{ 'true': diagnostic.ontOperState, 'false': !diagnostic.ontOperState}"></i></span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">ONTRxPower:</span> &nbsp;<span><i class="pi pi-circle-fill" [ngClass]="{ 'true': diagnostic.ontRxPower, 'false': !diagnostic.ontRxPower}"></i></span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">ONTTxPower:</span> &nbsp;<span><i class="pi pi-circle-fill" [ngClass]="{ 'true': diagnostic.ontTxPower, 'false': !diagnostic.ontTxPower}"></i></span>
+            </div>
+            <p-divider></p-divider>
+            <div>
+                <span class="bold-font">ONTVoltage:</span> &nbsp;<span><i class="pi pi-circle-fill" [ngClass]="{ 'true': diagnostic.ontVoltage, 'false': !diagnostic.ontVoltage}"></i></span>
+            </div>
+        </p-card>
+    </div>
+</div>

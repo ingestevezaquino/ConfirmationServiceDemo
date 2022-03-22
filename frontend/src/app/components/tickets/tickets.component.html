@@ -1,0 +1,64 @@
+<p-toolbar>
+    <div class="p-toolbar-group-left">
+        <button pButton type="button" label="Tickets" class="p-button-text" icon="pi pi-ticket" (click)="goToTicketScreen()"></button>
+    </div>
+    
+    <div class="p-toolbar-group-right">
+        <a href="http://192.168.56.101:8000/hangfire" target="_blank"><i style="color: green;" class="pi pi-calendar"></i></a>
+    </div>
+</p-toolbar>
+<br>
+<div *ngIf="!isFacilities">
+    <p-table #ticketsTable [value]="tickets" [paginator]="true" [rows]="5" [rowsPerPageOptions]="[5, 10, 20]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th pSortableColumn="caseNumber">
+                    <div class="flex justify-content-center align-items-center">
+                        Case number
+                        <p-sortIcon field="creationTime"></p-sortIcon>
+                        <p-columnFilter type="text" field="caseNumber" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th>Process Name</th>
+                <th>Product Type</th>
+                <th>Subscriber Number</th>
+                <th>Current Queue</th>
+                <th>Destination Queue</th>
+                <th>UAC</th>
+                <th>Client Name</th>
+                <th>Client Phone</th>
+                <th>
+                    <div class="flex justify-content-center align-items-center">
+                        Status
+                        <p-columnFilter type="text" field="status" display="menu"></p-columnFilter>
+                    </div>
+                </th>
+                <th pSortableColumn="creationTime">Creation Time <p-sortIcon field="creationTime"></p-sortIcon></th>
+                <th>Actions</th>
+            </tr>
+        </ng-template>
+    
+        <ng-template pTemplate="body" let-ticket let-rowIndex = "rowIndex">
+            <tr>
+                <td>{{ticket.caseNumber}}</td>
+                <td>{{ticket.processName}}</td>
+                <td>{{ticket.productType}}</td>
+                <td>{{ticket.subscriberNumber}}</td>
+                <td>{{ticket.currentQueue}}</td>
+                <td *ngIf="ticket.destinationQueue">{{ticket.destinationQueue}}</td>
+                <td *ngIf="!ticket.destinationQueue">N/A</td>
+                <td>{{ticket.uac}}</td>
+                <td>{{ticket.clientName}}</td>
+                <td>{{ticket.clientContactPhone}}</td>
+                <td>{{ticket.status}}</td>
+                <td>{{ticket.creationTime | date:'MM/dd/yyyy hh:mm'}}</td>
+                <td>
+                    <button (click)="showFacilities(ticket.subscriberNumber)" pButton pTooltip="View facilities" *ngIf="ticket.status !== 'PENDING'"><i class="pi pi-eye"></i></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+<div *ngIf="isFacilities">
+    <app-facilities [subscriberNumber]="subscriberNumber"></app-facilities>
+</div>

@@ -2,33 +2,38 @@ version: "3"
 
 services:
         cs-db:
-                build: ./Scripts/
+                build: ./scripts/
         cs-core-micro:
-                build: ./CSCore/
+                build: ./core_micro/
                 restart: always
                 environment:
                         CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
                 ports:
                         - 9000:80
         equipments-diagnostics-micro:
-                build: ./CSEAD/
+                build: ./ead_micro/
                 restart: always
                 environment:
                         CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
         diag-adsl-micro:
-                build: ./CSDiagADSL/
+                build: ./diag_adsl_micro/
                 restart: always
                 environment:
                         CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
         conf-iptv-micro:
-                build: ./CSConfIPTV/
+                build: ./conf_iptv_micro/
                 restart: always
                 environment:
                         CONNECTION_DB: Host=cs-db;Database=postgres;Username=postgres
         cs-scheduler-micro:
-                build: ./CSScheduler/
+                build: ./scheduler_micro/
                 restart: always
                 environment:
                         CONNECTION_DB: Host=cs-db;Database=scheduler_db;Username=postgres
                 ports:
                         - 8000:80
+        frontend:
+                build: ./frontend/
+                restart: always
+                ports:
+                        - 8080:80
