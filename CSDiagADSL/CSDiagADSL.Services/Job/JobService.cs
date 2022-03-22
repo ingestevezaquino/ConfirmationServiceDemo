@@ -51,6 +51,7 @@ namespace CSDiagADSL.Services.Job
                 if (diagnostic is null)
                 {
                     ticket.Status = "REFERRED TO MANUAL QUEUE / COULDN'T GET TICKET DIAGNOSTIC";
+                    ticket.DestinationQueue = "MANUAL QUEUE";
                     await context.SaveChangesAsync();
                     return;
                 }
@@ -60,6 +61,7 @@ namespace CSDiagADSL.Services.Job
                 if (!diagnostic.IsConfigured)
                 {
                     ticket.Status = "REFERRED TO TECHNICIAN QUEUE / BAD CONFIGURATION";
+                    ticket.DestinationQueue = "TECHNICIAN QUEUE";
                     await context.SaveChangesAsync();
                     return;
                 }
@@ -71,6 +73,7 @@ namespace CSDiagADSL.Services.Job
                 if (!diagnostic.OLTAdminState || !diagnostic.OLTOperState || !diagnostic.ONTAdminState || !diagnostic.ONTOperState)
                 {
                     ticket.Status = "REFERRED TO MANUAL QUEUE / NO SYNC";
+                    ticket.DestinationQueue = "MANUAL QUEUE";
                     await context.SaveChangesAsync();
                     return;
                 }
@@ -82,6 +85,7 @@ namespace CSDiagADSL.Services.Job
                 if (!diagnostic.ONTRxPower || !diagnostic.ONTTxPower || !diagnostic.ONTVoltage)
                 {
                     ticket.Status = "REFERRED TO TECHNICIAN QUEUE / PARAMS";
+                    ticket.DestinationQueue = "TECHNICIAN QUEUE";
                     await context.SaveChangesAsync();
                     return;
                 }
@@ -89,6 +93,7 @@ namespace CSDiagADSL.Services.Job
                 #endregion
 
                 ticket.Status = "REFERRED TO MANUAL QUEUE / ALL OK";
+                ticket.DestinationQueue = "MANUAL QUEUE";
                 await context.SaveChangesAsync();
             });
 

@@ -9,6 +9,6 @@ namespace CSCore.Services.Diagnostics
 {
     public interface IDiagnosticService
     {
-        Task<Diagnostic> GetLastDiagnosisAndFacility(string subcriberNumber);
+        Task<ClientResponse.Diagnostic> GetLastDiagnosisAndFacility(string subcriberNumber);
     }
 }

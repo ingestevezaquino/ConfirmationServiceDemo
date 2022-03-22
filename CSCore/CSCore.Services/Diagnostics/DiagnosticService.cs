@@ -1,6 +1,7 @@
 ﻿using CSCore.Persistence;
 using CSCore.Persistence.Models;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,21 +12,18 @@ namespace CSCore.Services.Diagnostics
 {
     public class DiagnosticService : IDiagnosticService
     {
-        private readonly ApplicationDBContext _context;
+        private readonly HttpClient _httpClient;
 
-        public DiagnosticService(ApplicationDBContext context)
+        public DiagnosticService(IHttpClientFactory httpClientFactory)
         {
-            _context = context;
+            _httpClient = httpClientFactory.CreateClient("EADRestClient");
+            _httpClient.BaseAddress = new Uri("http://equipments-diagnostics-micro/");
         }
 
-        public async Task<Diagnostic> GetLastDiagnosisAndFacility(string subcriberNumber)
+        public async Task<ClientResponse.Diagnostic> GetLastDiagnosisAndFacility(string subcriberNumber)
         {
-            var facility = await _context.Facilities
-                .Include(x => x.Diagnostics).FirstOrDefaultAsync(x => x.SubscriberNumber == subcriberNumber);
-
-            var diagnosis = facility.Diagnostics.OrderByDescending(d => d.CreationTime).First();
-            diagnosis.Facility = facility;
-
+            string responseJSON = await _httpClient.GetStringAsync($"api/diagnostics/{subcriberNumber}");
+            var diagnosis = JsonConvert.DeserializeObject<ClientResponse.Diagnostic>(responseJSON);
             return diagnosis;
         }
     }
