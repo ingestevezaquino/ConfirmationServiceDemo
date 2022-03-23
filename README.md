@@ -1,7 +1,7 @@
 # ConfirmationServiceDemo
 
-Confirmation Service Demo simulates that it receives a bunch of faulty tickets, 
-connect to them, validate configuration, sync and params.
+Confirmation Service Demo simulates a system that receives a bunch of faulty tickets, 
+connect to their actual equipments / facilities directly, validate configuration, sync and params.
 
 After all of this, CS takes actions based on defined bussiness rules.
 
@@ -14,10 +14,21 @@ You need to have installed:
 
 ## How do I run this?
 
-Run docker-compose up --build command, then wait until all services are available.
+Run command: 
+
+> docker-compose up --build 
+
+Then wait until all services are available.
 
 Once all microservices are running, go to this URI:
 
 * http://localhost:8000/hanfire/
 
-Here you will be redirected to a dashboard where you can track processes that are running as Jobs.
+This will open a new tab with a job's dashboard. 
+Here, you can track scheduled processes.
+
+## NOTE
+
+Frontend communication with backend has not been resolved yet.
+Even though, it's running inside a container and share same network with microservices, 
+it does not resolve docker dns automatically.
