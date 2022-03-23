@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: "http://192.168.56.101:9000/api/"
+  apiUrl: "http://core-micro/api/"
 };
 
 /*
