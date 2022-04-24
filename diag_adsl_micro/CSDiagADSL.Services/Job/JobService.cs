@@ -40,6 +40,7 @@ namespace CSDiagADSL.Services.Job
             {
                 using var scope = _serviceScopeFactory.CreateScope();
                 var context = scope.ServiceProvider.GetService<ApplicationDBContext>();
+                _logger.LogInformation($"[HASH CODE] ---> {context.ContextId.InstanceId}");
                 context.Tickets.Attach(ticket);
 
                 string response = await _httpClient.GetStringAsync($"api/diagnostics/{ticket.SubscriberNumber}");

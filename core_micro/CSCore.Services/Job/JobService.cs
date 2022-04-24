@@ -25,7 +25,7 @@ namespace CSCore.Services.Job
         public async Task<int> LoadTickets()
         {
             _logger.LogInformation("START PROCESS - LOAD TICKETS");
-            int amountOfNewTickets = _random.Next(20);
+            int amountOfNewTickets = _random.Next(20, 40);
 
             List<Ticket> tickets = new();
             List<Process> processes = await _context.Processes.ToListAsync();

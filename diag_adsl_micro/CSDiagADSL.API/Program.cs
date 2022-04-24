@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 var connectionString = Environment.GetEnvironmentVariable("CONNECTION_DB");
-builder.Services.AddDbContext<ApplicationDBContext>(options => options.UseNpgsql(connectionString));
+builder.Services.AddDbContextPool<ApplicationDBContext>(options => options.UseNpgsql(connectionString), 5);
 builder.Services.AddHttpClient();
 builder.Services.AddServices();
 

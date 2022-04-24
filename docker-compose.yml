@@ -30,8 +30,3 @@ services:
       CONNECTION_DB: Host=db;Database=scheduler_db;Username=postgres
     ports:
       - 8000:80
-  frontend:
-    build: ./frontend/
-    restart: always
-    ports:
-      - 8080:80
